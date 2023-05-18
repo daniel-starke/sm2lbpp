@@ -5,7 +5,7 @@ LDFLAGS = -s -static -fno-ident -municode
 #CFLAGS = -Og -g3 -ggdb -gdwarf-3 -fno-omit-frame-pointer -fvar-tracking-assignments -fbounds-check -fstack-protector-strong -fno-ident
 #LDFLAGS = -fno-ident -static
 PATHS = 
-LIBS = -lpng -lz
+LIBS = -lpng -lz -lm
 OBJEXT = .o
 BINEXT = .exe
 
