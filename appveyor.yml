@@ -11,8 +11,8 @@ image:
  - Visual Studio 2019
 
 install:
- - cmd: 'if "%platform%"=="Win32" vcpkg install libpng:x86-windows zlib:x86-windows'
- - cmd: 'if "%platform%"=="x64" vcpkg install libpng:x64-windows zlib:x64-windows'
+ - cmd: 'if "%platform%"=="Win32" vcpkg install libpng:x86-windows-static zlib:x86-windows-static'
+ - cmd: 'if "%platform%"=="x64" vcpkg install libpng:x64-windows-static zlib:x64-windows-static'
  - cmd: 'cd c:\tools\vcpkg && vcpkg integrate install'
 
 cache:
@@ -23,8 +23,8 @@ before_build :
  - cmd: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" /upgrade vs2010.vcxproj'
 
 build_script:
- - cmd: cd "%APPVEYOR_BUILD_FOLDER%"
- - cmd: msbuild vs2010.sln /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="v142" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+ - cmd: 'cd "%APPVEYOR_BUILD_FOLDER%"'
+ - cmd: 'msbuild vs2010.sln /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="v142" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
 
 artifacts:
  - path: bin/*/sm2lbpp.exe
