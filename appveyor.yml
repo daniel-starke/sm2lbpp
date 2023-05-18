@@ -18,14 +18,13 @@ install:
 cache:
  - c:\tools\vcpkg\installed\
 
-build:
- project: vs2010.sln
- verbosity: minimal
- parallel: true
-
 before_build :
  - cmd: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" /upgrade vs2010.sln'
  - cmd: '"C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" /upgrade vs2010.vcxproj'
+
+build_script:
+ - cmd: cd "%APPVEYOR_BUILD_FOLDER%"
+ - cmd: msbuild vs2010.sln /p:configuration="%configuration%" /p:platform="%platform_input%" /p:PlatformToolset="v142" /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 artifacts:
  - path: bin/*/sm2lbpp.exe
