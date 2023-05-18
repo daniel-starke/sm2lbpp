@@ -24,7 +24,8 @@ before_build :
 
 build_script:
  - cmd: 'cd "%APPVEYOR_BUILD_FOLDER%"'
- - cmd: 'msbuild vs2010.sln /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="v142" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
+ - cmd: 'if "%platform%"=="Win32" msbuild vs2010.sln /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="v142" /p:VcpkgTriplet="x86-windows-static" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
+ - cmd: 'if "%platform%"=="x64" msbuild vs2010.sln /p:configuration="%configuration%" /p:platform="%platform%" /p:PlatformToolset="v142" /p:VcpkgTriplet="x64-windows-static" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"'
 
 artifacts:
  - path: bin/*/sm2lbpp.exe
